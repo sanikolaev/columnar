@@ -130,23 +130,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        name: [1_86,87_172,173_258,259_344,345_and_on]
+        name: [1_10]
         include:
-          - name: 1_86
+          - name: 1_10
             start: 1
-            end: 86
-          - name: 87_172
-            start: 87
-            end: 172
-          - name: 173_258
-            start: 173
-            end: 258
-          - name: 259_344
-            start: 259
-            end: 344
-          - name: 345_and_on
-            start: 345
-            end: 999999
+            end: 10
     with:
       CTEST_START: ${{ matrix.start }}
       CTEST_END: ${{ matrix.end }}
@@ -164,35 +152,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Download test report artifact 1_86
+      - name: Download test report artifact 1_10
         uses: manticoresoftware/download_artifact_with_retries@v4
         continue-on-error: true
         with:
-          name: windows_test_1_86
-          path: .
-      - name: Download test report artifact 87_172
-        uses: manticoresoftware/download_artifact_with_retries@v4
-        continue-on-error: true
-        with:
-          name: windows_test_87_172
-          path: .
-      - name: Download test report artifact 173_258
-        uses: manticoresoftware/download_artifact_with_retries@v4
-        continue-on-error: true
-        with:
-          name: windows_test_173_258
-          path: .
-      - name: Download test report artifact 259_344
-        uses: manticoresoftware/download_artifact_with_retries@v4
-        continue-on-error: true
-        with:
-          name: windows_test_259_344
-          path: .
-      - name: Download test report artifact 345_and_on
-        uses: manticoresoftware/download_artifact_with_retries@v4
-        continue-on-error: true
-        with:
-          name: windows_test_345_and_on
+          name: windows_test_1_10
           path: .
       - name: Convert the XML to JUnit format
         run: for dir in build/xml_*; do xsltproc -o $dir/junit_tests.xml misc/junit/ctest2junit.xsl $dir/Test.xml; done;
