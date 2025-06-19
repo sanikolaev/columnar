@@ -74,6 +74,7 @@ jobs:
           cp bundle/Expat-1.95.8-x64/Libs/libexpat* build/_deps/manticore-build/src/Debug/
           cp bundle/libiconv-1.9.1-x64/lib/iconv* build/_deps/manticore-build/src/Debug/
       - run: Get-ChildItem -Recurse -Name
+      - run: tree /f
       - name: Setup Flex and Bison
         run: Install-ChocoPackage winflexbison
       - name: Run mysql
@@ -104,14 +105,13 @@ jobs:
           mkdir embeddings\target\release
           mv .\embeddings-lib\build\* embeddings\target\release\
           rm -r ./embeddings-lib
-
+      - run: Get-ChildItem -Recurse -Name
+      - run: tree /f
       - name: 🚀 Test
         id: test
         # --timeout may be not working https://gitlab.kitware.com/cmake/cmake/-/issues/23979
         # Add -VV to ctest to display extra debug info
-        run: |
-          Get-ChildItem -Recurse -Name
-          ctest -VV --debug -S cmake/citest.cmake -C $CTEST_CONFIGURATION_TYPE --no-compress-output --timeout 60
+        run: ctest -VV --debug -S cmake/citest.cmake -C $CTEST_CONFIGURATION_TYPE --no-compress-output --timeout 60
         continue-on-error: true
       - name: Remember status
         if: always()
