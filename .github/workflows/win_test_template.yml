@@ -73,7 +73,7 @@ jobs:
           cp bundle/mysql-x64/lib/debug/libmysql* build/_deps/manticore-build/src/Debug/
           cp bundle/Expat-1.95.8-x64/Libs/libexpat* build/_deps/manticore-build/src/Debug/
           cp bundle/libiconv-1.9.1-x64/lib/iconv* build/_deps/manticore-build/src/Debug/
-      - run: find .
+      - run: dir /S /B
       - name: Setup Flex and Bison
         run: Install-ChocoPackage winflexbison
       - name: Run mysql
@@ -110,8 +110,7 @@ jobs:
         # --timeout may be not working https://gitlab.kitware.com/cmake/cmake/-/issues/23979
         # Add -VV to ctest to display extra debug info
         run: |
-          find .
-          echo "CTEST_CONFIGURATION_TYPE: $CTEST_CONFIGURATION_TYPE"
+          dir /S /B
           ctest -VV --debug -S cmake/citest.cmake -C $CTEST_CONFIGURATION_TYPE --no-compress-output --timeout 60
         continue-on-error: true
       - name: Remember status
