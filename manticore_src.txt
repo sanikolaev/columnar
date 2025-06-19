@@ -1,1 +1,1 @@
-GIT_REPOSITORY https://github.com/sanikolaev/manticoresearch.git GIT_TAG f7c51f1893f5efbeb4d62780e327cb8e922b42d1
+GIT_REPOSITORY https://github.com/sanikolaev/manticoresearch.git GIT_TAG c76bbdc6279635149aa64dd687e824c3a3abd5cf
