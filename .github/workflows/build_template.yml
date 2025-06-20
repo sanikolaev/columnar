@@ -132,6 +132,12 @@ jobs:
           echo "CMAKE_COMMAND: ${{ inputs.cmake_command }}"
           ${{ inputs.cmake_command }}
 
+      - name: Upload deps cache artifact
+        uses: manticoresoftware/upload_artifact_with_retries@v4
+        with:
+          name: build_${{ inputs.DISTR }}_${{ inputs.CTEST_CONFIGURATION_TYPE }}_${{ inputs.arch }}_deps_cache
+          path: build/_deps/cache
+
       - name: Upload build artifacts
         if: success()
         uses: manticoresoftware/upload_artifact_with_retries@v4
