@@ -31,6 +31,7 @@ namespace knn
 using namespace util;
 
 // not member functions because there's no need to expose them in knn.h
+// CI probe: harmless comment-only change to test submodule-only daemon workflows.
 static void LoadSettings ( IndexSettings_t & tSettings, FileReader_c & tReader, uint32_t uVersion )
 {
 	tSettings.m_iDims				= tReader.Read_uint32();
