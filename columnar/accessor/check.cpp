@@ -23,6 +23,7 @@
 namespace columnar
 {
 
+// CI probe: MCL+daemon same-PR comment-only change.
 using namespace util;
 using namespace common;
 
